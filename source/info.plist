@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>Orange.hide</string>
+	<key>category</key>
+	<string>Tools</string>
+	<key>connections</key>
+	<dict>
+		<key>CD3AE5BD-EA09-477F-8706-B20766F6F0D2</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>159A291E-3339-491E-8D3F-79091BE0319B</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>CD69778A-A49B-44D1-9F54-B24359DEF8B8</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>CD3AE5BD-EA09-477F-8706-B20766F6F0D2</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Orange</string>
+	<key>description</key>
+	<string>Tune on/off hide hidden files</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>File Hidden Switch</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>script</key>
+				<string>STATUS=`defaults read com.apple.finder AppleShowAllFiles`
+QUERY="{query}"
+if [ "$QUERY" == "off" ];
+then
+	if [ $STATUS == NO ];
+	then
+		defaults write com.apple.finder AppleShowAllFiles YES
+		killall Finder
+		echo "Show Hidden Files Now"
+	fi
+	echo "Already Show Hidden Files"
+else
+	if [ "$QUERY" == "on" ];
+	then
+		if [ $STATUS == YES ];
+		then
+			defaults write com.apple.finder AppleShowAllFiles NO
+			killall Finder
+			echo "Hide Hidden Files Now"
+		fi
+		echo "Already Hide Hidden Files"
+	else
+	    if [ "$QUERY" == "" ];
+	    then
+		    if [ "$STATUS" == "YES" ];
+		    then
+			    echo "Finder Show Hidden Files Now"
+	    	else
+		    	echo "Finder Don't Show Hidden Files Now"
+            fi
+        fi
+    fi
+fi</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>CD3AE5BD-EA09-477F-8706-B20766F6F0D2</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>keyword</key>
+				<string>hide</string>
+				<key>subtext</key>
+				<string>Change the status whether show hidden files or not</string>
+				<key>text</key>
+				<string>show hidden file or not</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>CD69778A-A49B-44D1-9F54-B24359DEF8B8</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>title</key>
+				<string>{query}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>159A291E-3339-491E-8D3F-79091BE0319B</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>159A291E-3339-491E-8D3F-79091BE0319B</key>
+		<dict>
+			<key>ypos</key>
+			<real>60</real>
+		</dict>
+		<key>CD3AE5BD-EA09-477F-8706-B20766F6F0D2</key>
+		<dict>
+			<key>ypos</key>
+			<real>60</real>
+		</dict>
+		<key>CD69778A-A49B-44D1-9F54-B24359DEF8B8</key>
+		<dict>
+			<key>ypos</key>
+			<real>60</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>maoxian.de</string>
+</dict>
+</plist>
