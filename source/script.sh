@@ -5,9 +5,10 @@ then
 	if [ $STATUS == NO ];
 	then
 		defaults write com.apple.finder AppleShowAllFiles YES
-		killall Finder
+		#killall Finder
+        killall Finder /System/Library/CoreServices/Finder.app
 		echo "Show Hidden Files Now"
-	fi
+    fi
 	echo "Already Show Hidden Files"
 else
 	if [ "$QUERY" == "on" ];
@@ -15,7 +16,8 @@ else
 		if [ $STATUS == YES ];
 		then
 			defaults write com.apple.finder AppleShowAllFiles NO
-			killall Finder
+			#killall Finder
+            killall Finder /System/Library/CoreServices/Finder.app
 			echo "Hide Hidden Files Now"
 		fi
 		echo "Already Hide Hidden Files"
